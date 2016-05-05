@@ -1,7 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE web-app PUBLIC
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
 <web-app
         version="3.0"
         xmlns="http://java.sun.com/xml/ns/javaee"
@@ -9,6 +9,60 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
   
   <display-name>Tao Yuan Web Application</display-name>
+  
+  <listener>  
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
+  </listener>  
+  <!-- Spring 默认加载的配置文件 -->
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>classpath:spring.xml,classpath:spring-mybatis.xml</param-value>
+  </context-param>
+  
+  <!-- 字符集Encoding过滤器  CharacterEncodingFilter Filter -->
+  <filter>
+  	<filter-name>encodingFilter</filter-name>
+	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	<!-- 初始化参数 -->
+	<init-param>
+		<!-- 将所有请求字符集修改为UTF-8,以防止乱码问题 -->
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	</init-param>
+  </filter>
+  
+  <!-- 字符集Encoding过滤器  CharacterEncodingFilter Filter-Mapping -->
+  <filter-mapping>
+  	<filter-name>encodingFilter</filter-name>
+  	<url-pattern>/</url-pattern>
+  </filter-mapping>
+  
+  <!-- 防止静态资源被DispatcherServlet拦截,一定要写在DispatcherServlet前面 -->
+  <servlet-mapping>
+  	<servlet-name>default</servlet-name>
+  	<url-pattern>*.jpg</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>default</servlet-name>
+  	<url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>default</servlet-name>
+  	<url-pattern>*.gif</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>default</servlet-name>
+  	<url-pattern>*.css</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>default</servlet-name>
+  	<url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+  
   
   <!-- Spring MVC 核心控制器  DispatcherServlet Servlet -->
   <servlet>
@@ -32,4 +86,8 @@
   <!-- Welcome Page -->
   <welcome-file-list>/index.jsp</welcome-file-list>
   
+  <!-- 配置session超时时间,单位分钟 -->
+  <session-config>
+  	<session-timeout>15</session-timeout>
+  </session-config>
 </web-app>

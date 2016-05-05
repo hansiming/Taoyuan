@@ -7,30 +7,14 @@
         <title>淘缘二手交易市场</title>
         <meta name="keywords" content="会员注册" /> 
         <meta name="description" content="淘缘二手交易市场" /> 
-        <link rel="shortcut icon" href="/Public/images/favicon.ico" type="image/x-icon" /> 
-        <link rel="stylesheet" href="/Public/css/style.css" type="text/css" /> 
-                
+        <link rel="shortcut icon" href="/taoyuan/public/images/favicon.ico" type="image/x-icon" /> 
+        <link rel="stylesheet" href="/taoyuan/public/css/style.css" type="text/css" /> 
+		<link rel="stylesheet" href="/taoyuan/public/login/base.css" />
     </head> 
     <body> 
         <jsp:include page="/WEB-INF/public/header.jsp" />
-        <div id='nav' class='nav'>
-            <div class='nav_main clearfix'>
-                <a href='http://www.sucaihuo.com' class="menu">首 页</a>
-                <a href='js.html?' class="menu">最 热</a>
-                <a href='js.html?' class="menu">最 新</a>
-                <a href='js.html?' class="menu"></a>
-                <!--                <a href='http://www.sucaihuo.com/psd' class="menu">网站psd</a>-->
-                                <a href='topic.html' class="menu">精 选</a>
-                <a href='js.html?' class="menu">推 荐</a>
-                <a href='tool.html?' class="menu">我的二手</a>
-                <a href='help.html' class="menu">关于我</a>
-                <!--                <a href='http://idc.sucaihuo.com/' class="menu" target="_blank">服务器</a>-->
-                <span class='icon_hot'></span>
-            </div>
-        </div>
-<link rel="stylesheet" href="http://www.sucaihuo.com/other/login/css/base.css" />
 
-<div class="wrap">
+	<div class="wrap">
     <div class="pop-title clearfix">
         <a class="a_underline" href="http://www.sucaihuo.com/login.html">登录</a>    
         <div class="pop_name">
@@ -75,89 +59,14 @@
     </form>
 </div>
 
+<!-- footer begin -->
 
+<jsp:include page="/WEB-INF/public/footer.jsp" />
 
-<div class="footer" id="footer" data-url="http://www.sucaihuo.com/" data-logout="http://www.sucaihuo.com/Download/logout?r=" data-id="" data-mtype=""> 
-    <div class="footer_main clearfix">
-        <div class="guide">
-            <span class="guide_icon"></span>
-            <ul class="ul_foot">
-                 <li><strong>购物指南</strong></li>
-                <li><a href="js.html?/3-0-0-0-0-0">购物流程</a><a href="js.html?/7-0-0-0-0-0">服务协议</a></li>
-                <li><a href="js.html?/4-0-0-0-0-0">购买说明</a><a href="js.html?/8-0-0-0-0-0">购买服务</a></li>
+<!-- footer end -->
 
-            </ul>
-        </div>
-        <div class="stores">
-            <span class="stores_icon"></span>
-            <ul class="ul_foot">
-                <li><strong>支付方式</strong></li>
-                <li><a href="js.html?/7-0-0-0">银联支付</a><a href="js.html?/7-0-0-0">支付宝支付</a></li>
-                <li><a href="js.html?/8-0-0-0">其他</a><a href="js.html?/14-0-0-0"></a></li>
-            </ul>
-        </div>
-        <div class="rebate">
-            <span class="rebate_icon"></span>
-            <ul class="ul_foot">
-                <li><strong>配送方式</strong></li>
-                <li><a href="js.html?/177.html">配送说明</a><a href="js.html?/44.html"></a></li>
-            </ul>
-        </div>
-        <div class="follow">
-            <span class="follow_icon"></span>
-            <ul>
-                <li>
-                    <strong>联系我们</strong>
-                </li>
-                <li>
-                   <li>qq：294098789</li>
-                <li>手机：18482195202</li>
-            </ul>
-        </div>
-        <div class="friendly">
-                         <div class="foot_menu">
-                <a href="help.html" target="_blank"></a>
-
-                <span class="address">Copyright&copy;2016-2017 淘缘 All Rights Reserved.</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="windown_box" class="modal fade">
-    <div class="pop_title">
-        <div class="pop_name">登录</div>
-        <i class="pop_close" onclick="$('#windown_box').modal('hide')"></i>
-    </div>
-    <div class="pop_content">
-        <div class="form_item">
-            <div class="item_tip">用户名/邮箱</div>
-            <input id="email" name="email"  class="form_input" type="text" autocomplete="off" tabindex="1" value="" onblur="blurInputLoginBox($(this))"  onfocus ="focusInputLoginBox($(this))"/>
-        </div>
-        <div class="form_item">
-            <div class="item_tip">密码</div>
-            <input name="pwd" id="pwd"class="form_input" type="password" tabindex="2" value="" onblur="blurInputLoginBox($(this))"  onfocus ="focusInputLoginBox($(this))" />
-        </div>
-        <div class="captchaBox">
-            <div class="two_weeks">
-                <input id="rememberme" class="ckeckBox" type="checkbox" name="rememberme">
-                <label for="rememberme">两周内免登录</label>
-                <a  href="http://www.sucaihuo.com/reg.html" target="_blank" class="loginbox_reg">免费注册</a>
-            </div>
-        </div>
-        <p class="notice_error"></p>
-        <input id="btn_login" class="btn" type="button" onclick="sublogin()" tabindex="4" value="登  录">
-        <a class="a_underline" href="http://www.sucaihuo.com/forget.html">忘记密码？</a>
-        <div class="co_login" style="margin:20px 0 0">
-                联合登录
-                <a class="a_underline" href="http://www.sucaihuo.com/Index/login/type/qq.html">腾讯QQ</a>
-                <a class="a_underline" href="http://www.sucaihuo.com/Index/login/type/sina.html">新浪微博</a>
-                <a class="a_underline" href="http://www.sucaihuo.com/Index/login/type/renren.html">人人网</a>
-                绑定送<span class="red">200</span>积分
-            </div>
-    </div>
-</div>
-    <script src="/Public/js/jquery.js" type="text/javascript"></script><script src="/Public/js/common.js" type="text/javascript"></script>
+<script src="/taoyuan/public/js/jquery.js" type="text/javascript">
+</script><script src="/taoyuan/public/js/common.js" type="text/javascript"></script>
 
 <div class="mmsg-box mmsg-box-info" id='msg-box' style="margin-top: -23.5px; margin-left: -96.5px;">
     <div class="mmsg-content">
@@ -183,16 +92,20 @@
         if (i == 0) {
             var obj = $("#btn_reg");
             obj.addClass('disabled').val('注册中...');
-            $.post(getUrl('Ajax/regsave'), {username: $("#username").val(), pwd: $("#pwd").val(), email: $("#email").val()}, function(data) {
-                if (data.error != '') {
-                    alert(data);
-                } else {
-                    showSuccessTip(data.tip);
-                    var url = "http://www.sucaihuo.com";
-                    setTimeout("goUrl('" + url + "')", 1500);
-                }
-                obj.removeClass('disabled').val('注册');
-            }, "json")
+            $.ajax({
+    			
+    			type:'post',
+    			url: 'register/toadd',
+    			timeout: 3000,
+    			data: {userName : $("#username").val(), email : $("#email").val(), pwd : $("#pwd").val()},
+    			dataType:'json',
+    			success:function(data){
+    				if(data.status == 1){
+    					
+    					window.location.href='showMessage';
+    				}
+    			}
+    		});
         }
     }
 </script>

@@ -341,8 +341,8 @@ function subSuggest() {
     })
 }
 function isLogin() {
-     var username = "sucaihuo";
-    if (username) {
+    var username = $("#hiddenUserName").val();
+    if (username != '') {
         $(".username").text(username);
         $(".avatar").attr("src", "../images/avatar.jpg");
         $(".haslogin").removeClass("hide");
@@ -432,6 +432,7 @@ function blurInputLoginArea(obj, is_sub) {
     var type = obj.attr("data-type");
     var equal = obj.attr("data-equal");
     var time_error = 0;
+    obj.next(".error").attr("style","color:red");
     if (val == "") {
         obj.removeClass("form_input-focus");
         obj.prev("div").removeClass("item_tip_focus");
@@ -456,27 +457,49 @@ function blurInputLoginArea(obj, is_sub) {
         }
         if (time_error == 0 && is_sub != 1) {
             if (type == 'username') {
-                $.post(getUrl('Ajax/checkUsername'), {
-                    username: val
-                },
-                function(data) {
-                    if (data == -1) {
-                        getLoginError(obj, '该用户名已被注册');
-                    } else {
-                        getLoginRight(obj);
-                    }
-                })
+            	
+            	getLoginError(obj, '检测中');
+        		$.ajax({
+        			
+        			type:'post',
+        			url: 'register/checkUserName',
+        			timeout: 3000,
+        			data: {userName : val},
+        			dataType:'json',
+        			success:function(data){
+        				if(data.status == '1'){
+        					obj.next(".error").attr("style","color:green");
+                            getLoginError(obj, data.message);
+                            obj.nextAll(".icon-loginright").css({
+                                "display": "inline-block"
+                            });
+        				}else{
+                            getLoginError(obj, data.message);
+        				}
+        			}
+        		});
             } else if (type == 'email') {
-                $.post(getUrl('Ajax/checkEmail'), {
-                    email: val
-                },
-                function(data) {
-                    if (data == -1) {
-                        getLoginError(obj, '该电子邮箱已被注册');
-                    } else {
-                        getLoginRight(obj);
-                    }
-                })
+	            
+            	getLoginError(obj, '检测中');
+        		$.ajax({
+        			
+        			type:'post',
+        			url: 'register/checkemil',
+        			timeout: 3000,
+        			data: {email : val},
+        			dataType:'json',
+        			success:function(data){
+        				if(data.status == '1'){
+        					obj.next(".error").attr("style","color:green");
+                            getLoginError(obj, data.message);
+                            obj.nextAll(".icon-loginright").css({
+                                "display": "inline-block"
+                            });
+        				}else{
+                            getLoginError(obj, data.message);
+        				}
+        			}
+        		});
             } else {
                 getLoginRight(obj);
             }
