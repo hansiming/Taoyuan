@@ -1,39 +1,32 @@
 package com.csdhsm.taoyuan.mapper;
 
-import java.util.List;
-
+import com.csdhsm.taoyuan.models.Conmment;
 import com.csdhsm.taoyuan.models.Info;
 import com.csdhsm.taoyuan.models.InfoCategory;
+import com.csdhsm.taoyuan.models.PageBean;
+import java.util.List;
 
-/**  
- * <p>All rights Reserved, Designed By Han</p>
- * <p>For Taoyuan Web Application</p>
- * @Title:  InfoMapper.java   
- * @Package com.csdhsm.taoyuan.mapper   
- * @Description: the mapper of info
- * @author: Han   
- * @E-mail: 294098789@qq.com  
- * @date:   2016年5月4日 下午7:51:04   
- * @version:V1.0     
- */  
-public interface InfoMapper {
+public abstract interface InfoMapper {
 	
-	/**   
-	 * <p>Title: getCategories</p>   
-	 * <p>Description: get all category</p> 
-	 * @param:  @return  
-	 * @return: List<InfoCategory>
-	 * @Autor: Han  
-	 */  
-	public List<InfoCategory> getCategories();
-	
-	/**   
-	 * <p>Title: getInfosBySorted</p>   
-	 * <p>Description: </p> 
-	 * @param:  @param sorted like lookedCount desc
-	 * @param:  @return  
-	 * @return: List<Info>
-	 * @Autor: Han  
-	 */  
-	public List<Info> getInfosBySorted(String sorted);
+	  public abstract List<InfoCategory> getCategories();
+	  
+	  public abstract List<Info> getInfosBySorted(String paramString);
+	  
+	  public abstract int getInfoCount(PageBean<Info> paramPageBean);
+	  
+	  public abstract List<Info> getInfoListByPageBean(PageBean<Info> paramPageBean);
+	  
+	  public abstract List<Info> getInfoList();
+	  
+	  public abstract int addInfo(Info paramInfo);
+	  
+	  public abstract Info getInfoById(int paramInt);
+	  
+	  public abstract int getConmmentCount(int paramInt);
+	  
+	  public abstract List<Conmment> getConmmentByInfoId(int paramInt);
+	  
+	  public abstract int addConm(Conmment paramConmment);
+	  
+	  public abstract int addLookedCount(int paramInt);
 }

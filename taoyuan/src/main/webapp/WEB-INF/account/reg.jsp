@@ -16,7 +16,7 @@
 
 	<div class="wrap">
     <div class="pop-title clearfix">
-        <a class="a_underline" href="http://www.sucaihuo.com/login.html">登录</a>    
+        <a class="a_underline" href="/taoyuan/login">登录</a>    
         <div class="pop_name">
             注册<span class="grey"></span>
         </div>
@@ -95,14 +95,14 @@
             $.ajax({
     			
     			type:'post',
-    			url: 'register/toadd',
+    			url: '/taoyuan/register/toadd',
     			timeout: 3000,
     			data: {userName : $("#username").val(), email : $("#email").val(), pwd : $("#pwd").val()},
     			dataType:'json',
     			success:function(data){
     				if(data.status == 1){
     					
-    					window.location.href='showMessage';
+    					window.location.href='/taoyuan/showMessage';
     				}
     			}
     		});

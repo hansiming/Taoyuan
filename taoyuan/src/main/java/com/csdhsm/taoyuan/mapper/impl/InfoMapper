@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+  
+<mapper namespace="com.csdhsm.taoyuan.mapper.InfoMapper">
+	
+	<!-- ��������?��InfoCategory -->
+	<select id="getCategories" resultType="com.csdhsm.taoyuan.models.InfoCategory">
+		select * from infoCategory;
+	</select>
+	
+	<!-- ����������������?������������Info��������?-->
+	<select id="getInfosBySorted" parameterType="java.lang.String" resultType="com.csdhsm.taoyuan.models.Info">
+		select * from info order by #{sort} LIMIT 0,6
+	</select>
+	
+	<!-- ������������������������  -->
+	<select id="getInfoCount" parameterType="com.csdhsm.taoyuan.models.PageBean" resultType="java.lang.Integer">
+		select count(*) from info where 1 = 1 
+		<if test="wheres != null">
+			and #{wheres} 
+		</if>
+		<if test="cateId != 0">
+			and categoryId = #{cateId}
+		</if>
+	</select>
+	
+	<!-- ������Info������ -->
+	<select id="getInfoList" resultType="com.csdhsm.taoyuan.models.Info">
+		SELECT * FROM info
+	</select>
+	
+	<!-- ������InfoId������Info������ -->
+	<select id="getInfoById" parameterType="java.lang.Integer" resultType="com.csdhsm.taoyuan.models.Info">
+		select * from info where id=#{infoId}
+	</select>
+	
+	<!-- ������������������ -->
+	<select id="getInfoListByPageBean" parameterType="com.csdhsm.taoyuan.models.PageBean" resultType="com.csdhsm.taoyuan.models.Info">
+		SELECT * FROM info WHERE 1 = 1 
+		<if test="wheres != null and wheres != ''">
+			and #{wheres} 
+		</if>
+		<if test="cateId != 0">
+			and categoryId = #{cateId} 
+		</if>
+		<if test="order != null and order != ''">
+			order by #{order} 
+		</if>
+		 	AND id LIMIT #{recordStartIndex}, #{pageSize} 
+	</select>
+	
+	<!-- ������������Id������������������ -->
+	<select id="getInfoListByCateId" parameterType="java.lang.Integer" resultType="com.csdhsm.taoyuan.models.Info">
+		SELECT * FROM INFO WHERE CATEID=#{cateId}
+	</select>
+	
+	<!-- ������������Id������������������ -->
+	<select id="getConmmentCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM tcomment WHERE infold = #{infoId}
+	</select>
+	
+	<!-- ������������Id������������ -->
+	<select id="getConmmentByInfoId" parameterType="java.lang.Integer" resultType="com.csdhsm.taoyuan.models.Conmment">
+		SELECT * FROM TCOMMENT WHERE infold = #{infoId}
+	</select>
+	
+	<update id="addLookedCount" parameterType="java.lang.Integer">
+		UPDATE info SET lookedCount = lookedCount + 1 WHERE id = #{infoId}
+	</update>
+	
+	<!-- ��������?�������� -->
+	<insert id="addConm" parameterType="com.csdhsm.taoyuan.models.Conmment" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO TCOMMENT (infold,userId,content,add_time)
+		VALUES(#{infold},#{userId},#{content},NOW());
+	</insert>
+	
+	<!-- ��������?�������� -->
+	<insert id="addInfo" parameterType="com.csdhsm.taoyuan.models.Info" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO taoyuan.info (categoryId,imageUrl,content,lookedCount,title,isHot,goodCount,userId)
+		VALUES(#{categoryId},#{imageUrl},#{content},0,#{title},0,0,#{userId});
+	</insert>
+</mapper>

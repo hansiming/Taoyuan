@@ -16,7 +16,7 @@ table{empty-cells:show; border-collapse:collapse; border-spacing:0}
 *:first-child+html .clearfix{zoom:1}
 em{font-style:normal}
 .orange{color:#f63}
-body{font:12px/1.5 "Hiragino Sans GB","Microsoft YaHei",simsun; font-size:13px; color:#211922; background-color:#ebebeb}
+body{font:12px/1.5 "Hiragino Sans GB","Microsoft YaHei",simsun; font-size:13px; color:#211922; background-color:#FFF}
 .icon{background-image:url("../images/global.png")}
 .round-image{width:50px; height:50px; float:left; margin-right:9px; -webkit-transition:all .3s ease-in; -moz-transition:all .3s ease-in; transition:all .3s ease-in; border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px}
 .pager{text-align:center; padding:20px 0}
@@ -563,4 +563,10 @@ body .hot-label:hover,body .list-tag:hover{text-decoration: none}
     width: 12px;
     display: inline-block;
     height: 12px;
+}
+
+.lazy{
+	
+	width: 260px;
+	height: 350px;
 }

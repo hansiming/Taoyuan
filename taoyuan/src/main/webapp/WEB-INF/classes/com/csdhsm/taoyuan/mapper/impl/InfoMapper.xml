@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+  
+<mapper namespace="com.csdhsm.taoyuan.mapper.InfoMapper">
+	
+	<!-- 获取所有InfoCategory -->
+	<select id="getCategories" resultType="com.csdhsm.taoyuan.models.InfoCategory">
+		select * from infoCategory;
+	</select>
+	
+	<!-- 根据某个属性排序得到Info的集合 -->
+	<select id="getInfosBySorted" parameterType="java.lang.String" resultType="com.csdhsm.taoyuan.models.Info">
+		select * from info order by #{sort} LIMIT 0,6
+	</select>
+	
+	<!-- 得到分页数据个数  -->
+	<select id="getInfoCount" parameterType="com.csdhsm.taoyuan.models.PageBean" resultType="java.lang.Integer">
+		select count(*) from info where 1 = 1 
+		<if test="wheres != null">
+			and #{wheres} 
+		</if>
+		<if test="cateId != 0">
+			and categoryId = #{cateId}
+		</if>
+	</select>
+	
+	<!-- 得到Info列表 -->
+	<select id="getInfoList" resultType="com.csdhsm.taoyuan.models.Info">
+		SELECT * FROM info
+	</select>
+	
+	<!-- 通过InfoId得到Info信息 -->
+	<select id="getInfoById" parameterType="java.lang.Integer" resultType="com.csdhsm.taoyuan.models.Info">
+		select * from info where id=#{infoId}
+	</select>
+	
+	<!-- 得到分页数据 -->
+	<select id="getInfoListByPageBean" parameterType="com.csdhsm.taoyuan.models.PageBean" resultType="com.csdhsm.taoyuan.models.Info">
+		SELECT * FROM info WHERE 1 = 1 
+		<if test="wheres != null and wheres != ''">
+			and #{wheres} 
+		</if>
+		<if test="cateId != 0">
+			and categoryId = #{cateId} 
+		</if>
+		<if test="order != null and order != ''">
+			order by #{order} 
+		</if>
+		 	AND id LIMIT #{recordStartIndex}, #{pageSize} 
+	</select>
+	
+	<!-- 根据分类Id获取信息列表 -->
+	<select id="getInfoListByCateId" parameterType="java.lang.Integer" resultType="com.csdhsm.taoyuan.models.Info">
+		SELECT * FROM INFO WHERE CATEID=#{cateId}
+	</select>
+	
+	<!-- 根据信息Id得到评论数量 -->
+	<select id="getConmmentCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM tcomment WHERE infold = #{infoId}
+	</select>
+	
+	<!-- 根据信息Id得到评论 -->
+	<select id="getConmmentByInfoId" parameterType="java.lang.Integer" resultType="com.csdhsm.taoyuan.models.Conmment">
+		SELECT * FROM TCOMMENT WHERE infold = #{infoId}
+	</select>
+	
+	<update id="addLookedCount" parameterType="java.lang.Integer">
+		UPDATE info SET lookedCount = lookedCount + 1 WHERE id = #{infoId}
+	</update>
+	
+	<!-- 添加一条评论 -->
+	<insert id="addConm" parameterType="com.csdhsm.taoyuan.models.Conmment" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO TCOMMENT (infold,userId,content,add_time)
+		VALUES(#{infold},#{userId},#{content},NOW());
+	</insert>
+	
+	<!-- 添加一条信息 -->
+	<insert id="addInfo" parameterType="com.csdhsm.taoyuan.models.Info" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO taoyuan.info (categoryId,imageUrl,content,lookedCount,title,isHot,goodCount,userId)
+		VALUES(#{categoryId},#{imageUrl},#{content},0,#{title},0,0,#{userId});
+	</insert>
+</mapper>

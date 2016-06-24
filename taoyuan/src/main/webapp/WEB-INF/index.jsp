@@ -30,7 +30,7 @@
                 	<c:forEach items="${requestScope.theInfoOfNew }" var="list">
 	                	<dd class="sidebar_articles">
 	                        <span>${list.addTime }</span>
-	                        <a target="_blank"  href="js.html?/712.html">${list.title }</a>
+	                        <a target="_blank"  href="/taoyuan/show?infoId=${list.id }">${list.title }</a>
 	                    </dd> 
                     </c:forEach>         
                </dl>
@@ -62,7 +62,7 @@
                 <div class='head'><h3>信息分类</h3></div>
                 <div class="content" id="merchant_cats_menus"> 
                 <c:forEach items="${requestScope.categories }" var="list">
-                    <a href="js.html?">
+                    <a href="toList?cateId=${list.id }&page=1">
                         <i class="merchant_arrow merchant_arrow_right"></i>
                         <span class="icon_merchant icon_merchant_fire"></span><span class="name">${list.categoryName }</span>
                         <i class="merchant_arrow_left"></i> 
@@ -73,7 +73,7 @@
         </div>
     </div>
     <div class="index_per clearfix">
-        <div class="sidebar_per sidebar_second">
+        <aside class="sidebar_per sidebar_second">
             <dl>
                 <dt>
                 <a href="js.html?/0-0-0-6-0-0" class="more" target="_blank">更多&nbsp;<span class="more-sign">&gt;</span></a>
@@ -82,11 +82,11 @@
                 	<c:forEach items="${requestScope.theInfoOfRecommend }" var="list">
                 	<dd class="sidebar_articles">
                         <span>${list.addTime }</span>
-                        <a target="_blank"  href="js.html?/436.html">${list.title }</a>
+                        <a target="_blank"  href="/taoyuan/show?infoId=${list.id }">${list.title }</a>
                     </dd>
                     </c:forEach>
                </dl>
-        </div>
+        </aside>
         <div class="index_recommend" id='index_recommend_0'>
             <div class="head clearfix">
                 <strong>淘缘er聚集地</strong>

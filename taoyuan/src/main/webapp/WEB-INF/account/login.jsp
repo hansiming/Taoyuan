@@ -16,7 +16,7 @@
 
 	<div class="wrap">
 	    <div class="pop-title clearfix">
-	        <a class="a_underline" href="http://www.sucaihuo.com/reg.html">注册</a>   
+	        <a class="a_underline" href="/taoyuan/register">注册</a>   
 	        <div class="pop_name">
 	            登录<span class="grey"></span>
 	        </div>
@@ -83,7 +83,7 @@ function subLogin(obj) {
     $.ajax({
 		
 		type:'post',
-		url: 'login/tologin',
+		url: '/taoyuan/login/tologin',
 		timeout: 3000,
 		data: {userName : username, pwd : pwd},
 		dataType:'json',
@@ -91,7 +91,7 @@ function subLogin(obj) {
 			if(data.status == 1){
 				
 	            showSuccessTip(data.message);
-				window.location.href='showMessage';
+				window.location.href='/taoyuan/showMessage';
 			}else{
 				
 				showLoginError(data.message);
