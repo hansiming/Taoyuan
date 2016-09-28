@@ -12,17 +12,17 @@
 		<result column="userStatusId" property="userStatusId" />
 	</resultMap>
 	
-	<!-- ��������������������������������?��������������������?,������0������������������ -->
+	<!-- 查询该用户名是否被注册,已经被注册返回1,返回0则表示未注册 -->
 	<select id="checkUserNameExist" parameterType="java.lang.String" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM userlogin WHERE username = #{userName};
 	</select>
 	
-	<!-- ������������������������������,��������������������?,������0������������������ -->
+	<!-- 查询该邮箱是否被注册,已经被注册返回1,返回0则表示未注册 -->
 	<select id="checkUserEmailExist" parameterType="java.lang.String" resultType="java.lang.Integer">
 		SELECT COUNT(*) FROM userlogin WHERE email = #{email};
 	</select>
 	
-	<!-- ���������������������������������Id -->
+	<!-- 通过注册验证码查询用户Id -->
 	<select id="getUserIdByVcode" parameterType="java.lang.String" resultType="java.lang.Integer">
 		SELECT userId FROM UserComfirmCode WHERE vcode = #{vcode};
 	</select>
@@ -31,32 +31,32 @@
 		SELECT * FROM userInfo WHERE userId = #{userId}
 	</select>
 	
-	<!-- ����������������?��������������?-->
+	<!-- 使用邮箱或者用户名登陆 -->
 	<select id="loginByEmailOrUserName" parameterType="com.csdhsm.taoyuan.models.UserLogin" resultType="com.csdhsm.taoyuan.models.UserLogin">
 		select * from userLogin where (userName = #{userName} or email = #{email}) and pwd = #{pwd};
 	</select>
 	
-	<!-- ������������ID������UserLogin -->
+	<!-- 通过用户ID得到UserLogin -->
 	<select id="getUserLoginByUserId" parameterType="java.lang.Integer" resultType="com.csdhsm.taoyuan.models.UserLogin">
 		SELECT * FROM UserLogin WHERE id = #{userId};
 	</select>
 	
-	<!-- ��������������������������������?-->
+	<!-- 设置通过验证的用户角色 -->
 	<update id="updateUserStatusId" parameterType="java.lang.Integer">
 		UPDATE userLogin SET userStatusId = 1 WHERE id = #{userId};
 	</update>
 	
-	<!-- ������������,������������Id -->
+	<!-- 添加用户,返回用户Id -->
 	<insert id="register" parameterType="com.csdhsm.taoyuan.models.UserLogin" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO userlogin (userName,pwd,userStatusId,email) VALUES(#{userName}, #{pwd}, #{userStatusId}, #{email});
 	</insert>
 	
-	<!-- ������������������������������������ -->
+	<!-- 为新注册的用户添加验证码 -->
 	<insert id="addVcode" parameterType="com.csdhsm.taoyuan.models.UserComfirmCode" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO UserComfirmCode(userId, vcode) VALUES(#{userId}, #{vcode});
 	</insert>
 	
-	<!-- ������������������ -->
+	<!-- 添加用户信息 -->
 	<insert id="addUserInfo" parameterType="com.csdhsm.taoyuan.models.UserInfo" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO userinfo (headImage, gender, realName, telePhone, userId)
 		VALUES(#{headImage}, null, null, null, #{userId});
